@@ -3,7 +3,7 @@
   <button @click="start" :disabled="isPlaying">play</button>
 
   <Block v-if="isPlaying" :delay="delay" @reaction-time="endGame" />
-  <p v-if="showResults">Reaction time: {{ score }} ms</p>
+  <Results v-if="showResults" :score="score" />
 </template>
 
 <script>
@@ -12,7 +12,7 @@ import Results from "./components/Results.vue";
 
 export default {
   name: "App",
-  components: { Block },
+  components: { Block, Results },
   data() {
     return {
       isPlaying: false,
@@ -42,7 +42,23 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: hsl(210, 29%, 24%);
   margin-top: 60px;
+}
+
+button {
+  background: #0faf87;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin: 10px;
+}
+button[disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
 }
 </style>
